@@ -1,0 +1,11 @@
+const DEBUG i64 = 10
+const INFO i64 = 20
+const WARN i64 = 30
+const ERROR i64 = 40
+var minimum i64 = INFO
+fn setMinimumLevel(level i64) void { minimum = level }
+fn minimumLevel() i64 { return minimum }
+fn debug(message str) void { if (minimum <= DEBUG) print("DEBUG " + message) }
+fn info(message str) void { if (minimum <= INFO) print("INFO " + message) }
+fn warn(message str) void { if (minimum <= WARN) print("WARN " + message) }
+fn error(message str) void { if (minimum <= ERROR) print("ERROR " + message) }

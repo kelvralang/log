@@ -1,0 +1,7 @@
+const log = @import("github.com/moglang/log")
+if (log.DEBUG != 10i64 || log.INFO != 20i64 || log.WARN != 30i64 || log.ERROR != 40i64) error("log level constants")
+log.setMinimumLevel(log.WARN)
+if (log.minimumLevel() != log.WARN) error("log minimum level")
+log.warn("test warning")
+log.setMinimumLevel(log.DEBUG)
+if (log.minimumLevel() != log.DEBUG) error("log level update")

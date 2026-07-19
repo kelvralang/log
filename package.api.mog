@@ -1,0 +1,11 @@
+package log
+const DEBUG i64
+const INFO i64
+const WARN i64
+const ERROR i64
+fn setMinimumLevel(level i64) void
+fn minimumLevel() i64
+fn debug(message str) void
+fn info(message str) void
+fn warn(message str) void
+fn error(message str) void
