@@ -4,8 +4,18 @@ const INFO i64
 const WARN i64
 const ERROR i64
 fn setMinimumLevel(level i64) void
+fn trySetMinimumLevel(level i64) bool
 fn minimumLevel() i64
+fn isValidLevel(level i64) bool
+fn levelName(level i64) str
+fn enabled(level i64) bool
+fn write(level i64, message str) void
+fn writeNamed(level i64, logger str, message str) void
 fn debug(message str) void
 fn info(message str) void
 fn warn(message str) void
 fn error(message str) void
+fn debugNamed(logger str, message str) void
+fn infoNamed(logger str, message str) void
+fn warnNamed(logger str, message str) void
+fn errorNamed(logger str, message str) void
