@@ -1,3 +1,37 @@
 # moglang/log
 
-Canonical import: `github.com/moglang/log`. This source package supports Mog runtime `^0.1.0`; its public contract is `package.api.mog`.
+Configurable leveled console logging for Mog. The canonical import is
+`github.com/moglang/log`, and the package supports Mog runtime `^0.1.4`.
+
+```bash
+mog add github.com/moglang/log@v0.2.0
+```
+
+```mog
+const log = @import("github.com/moglang/log")
+
+log.setMinimumLevel(log.DEBUG)
+log.info("server started")
+log.debugNamed("database", "connection ready")
+```
+
+The four supported levels are `DEBUG`, `INFO`, `WARN`, and `ERROR`. Messages
+below the configured minimum are suppressed. `enabled` lets callers avoid work
+needed only to construct a disabled message, while `levelName` and
+`isValidLevel` are useful when accepting log configuration from users.
+`trySetMinimumLevel` validates a configured level and leaves the current
+minimum unchanged when it returns `false`.
+
+`write` accepts a level dynamically. `writeNamed` and the four `*Named`
+helpers add a stable `[name]` prefix without introducing global logger state:
+
+```text
+INFO server started
+DEBUG [database] connection ready
+```
+
+For backward compatibility, `setMinimumLevel` continues to accept custom
+numeric thresholds. Dynamic writes at custom levels use the name `UNKNOWN`;
+validate external configuration when named-level output is required. The
+complete public contract is declared in `package.api.mog`. The package is
+licensed under GPL-3.0-only; see `LICENSE`.

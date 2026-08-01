@@ -3,9 +3,48 @@ const INFO i64 = 20
 const WARN i64 = 30
 const ERROR i64 = 40
 var minimum i64 = INFO
-fn setMinimumLevel(level i64) void { minimum = level }
+
+fn isValidLevel(level i64) bool {
+    return level == DEBUG || level == INFO || level == WARN || level == ERROR
+}
+
+fn levelName(level i64) str {
+    if (level == DEBUG) return "DEBUG"
+    if (level == INFO) return "INFO"
+    if (level == WARN) return "WARN"
+    if (level == ERROR) return "ERROR"
+    return "UNKNOWN"
+}
+
+fn setMinimumLevel(level i64) void {
+    minimum = level
+}
+
+fn trySetMinimumLevel(level i64) bool {
+    if (!isValidLevel(level)) return false
+    minimum = level
+    return true
+}
+
 fn minimumLevel() i64 { return minimum }
-fn debug(message str) void { if (minimum <= DEBUG) print("DEBUG " + message) }
-fn info(message str) void { if (minimum <= INFO) print("INFO " + message) }
-fn warn(message str) void { if (minimum <= WARN) print("WARN " + message) }
-fn error(message str) void { if (minimum <= ERROR) print("ERROR " + message) }
+
+fn enabled(level i64) bool {
+    return minimum <= level
+}
+
+fn write(level i64, message str) void {
+    if (enabled(level)) print(levelName(level) + " " + message)
+}
+
+fn writeNamed(level i64, logger str, message str) void {
+    if (enabled(level)) print(levelName(level) + " [" + logger + "] " + message)
+}
+
+fn debug(message str) void { write(DEBUG, message) }
+fn info(message str) void { write(INFO, message) }
+fn warn(message str) void { write(WARN, message) }
+fn error(message str) void { write(ERROR, message) }
+fn debugNamed(logger str, message str) void { writeNamed(DEBUG, logger, message) }
+fn infoNamed(logger str, message str) void { writeNamed(INFO, logger, message) }
+fn warnNamed(logger str, message str) void { writeNamed(WARN, logger, message) }
+fn errorNamed(logger str, message str) void { writeNamed(ERROR, logger, message) }
