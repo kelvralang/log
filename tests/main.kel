@@ -1,4 +1,4 @@
-const log = @import("github.com/moglang/log")
+const log = @import("github.com/kelvralang/log")
 if (log.DEBUG != 10i64 || log.INFO != 20i64 || log.WARN != 30i64 || log.ERROR != 40i64) error("log level constants")
 if (!log.isValidLevel(log.DEBUG) || !log.isValidLevel(log.ERROR)) error("known levels must be valid")
 if (log.isValidLevel(15i64)) error("unknown levels must be invalid")
