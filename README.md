@@ -1,14 +1,14 @@
-# moglang/log
+# kelvralang/log
 
-Configurable leveled console logging for Mog. The canonical import is
-`github.com/moglang/log`, and the package supports Mog runtime `^0.1.4`.
+Configurable leveled console logging for Kelvra. The canonical import is
+`github.com/kelvralang/log`, and the package supports Kelvra runtime `^0.2.0`.
 
 ```bash
-mog add github.com/moglang/log@v0.2.0
+kelvra add github.com/kelvralang/log@v0.2.0
 ```
 
-```mog
-const log = @import("github.com/moglang/log")
+```kelvra
+const log = @import("github.com/kelvralang/log")
 
 log.setMinimumLevel(log.DEBUG)
 log.info("server started")
@@ -33,5 +33,5 @@ DEBUG [database] connection ready
 For backward compatibility, `setMinimumLevel` continues to accept custom
 numeric thresholds. Dynamic writes at custom levels use the name `UNKNOWN`;
 validate external configuration when named-level output is required. The
-complete public contract is declared in `package.api.mog`. The package is
+complete public contract is declared in `package.api.kel`. The package is
 licensed under GPL-3.0-only; see `LICENSE`.
